@@ -28,7 +28,7 @@
         <tr>
             <td>password :- </td>
             <td>
-                <input type="text" id="password" />
+                <input type="password" id="password" />
             </td>
         </tr>
         <tr>
@@ -96,6 +96,7 @@
     }
 
     const viewdata = () => {
+        document.getElementById('edit').style.display = "none"
         let val = JSON.parse(localStorage.getItem('crud'))
         let tbl = "";
         for (let i in val) {
@@ -108,6 +109,7 @@
                             <td>${val[i].userpassword}</td>
                             <td>
                                 <button onclick='deleteData(${val[i].userid})'>Delete</button>
+                                <button onclick='editdata(${val[i].userid})'>Edit</button>
                             </td>
                         </tr>
                     `
@@ -117,13 +119,31 @@
     viewdata();
 
     deleteData = (userid) => {
+        let val = JSON.parse(localStorage.getItem('crud'));
         for (let i in val) {
             if (val[i].userid == userid) {
                 val.splice(i, 1)
             }
         }
-        alert("Record Successfully delete")
+        alert("Record Successfully delete");
+        localStorage.setItem('crud', JSON.stringify(val));
         viewdata();
+    }
+
+    editdata = (userid) => {
+        document.getElementById('edit').style.display = "block";
+        document.getElementById('save').style.display = "none";
+        // let name = document.getElementById('name').value;
+        // let email = document.getElementById('email').value = "";
+        // let phone = document.getElementById('phone').value = "";
+        // let password = document.getElementById('password').value = "";
+        let val = JSON.parse(localStorage.getItem('crud'));
+
+        for (let i in val) {
+            if (val[i].userid == userid) {
+                console.log(userid);
+            }
+        }
     }
 
 </script>
