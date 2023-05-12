@@ -133,17 +133,20 @@
     editdata = (userid) => {
         document.getElementById('edit').style.display = "block";
         document.getElementById('save').style.display = "none";
-        // let name = document.getElementById('name').value;
-        // let email = document.getElementById('email').value = "";
-        // let phone = document.getElementById('phone').value = "";
-        // let password = document.getElementById('password').value = "";
         let val = JSON.parse(localStorage.getItem('crud'));
 
         for (let i in val) {
             if (val[i].userid == userid) {
-                console.log(userid);
+                document.getElementById('userid').value = val[i].userid;
+                document.getElementById('name').value = val[i].username;
+                document.getElementById('email').value = val[i].useremail;
+                document.getElementById('phone').value = val[i].usernumber;
+                document.getElementById('password').value = val[i].userpassword;
             }
         }
+    }
+    edit = () => {
+
     }
 
 </script>
